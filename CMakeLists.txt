@@ -9,3 +9,6 @@ add_subdirectory(external)
 
 # source
 add_subdirectory(source)
+
+# example
+add_subdirectory(example)
