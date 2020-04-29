@@ -1,0 +1,9 @@
+[submodule "external/glfw"]
+	path = external/glfw
+	url = https://gitee.com/xueqingbing/glfw.git
+[submodule "external/glm"]
+	path = external/glm
+	url = https://gitee.com/wujh0/glm.git
+[submodule "external/assimp"]
+	path = external/assimp
+	url = https://gitee.com/mirrors/assimp.git
