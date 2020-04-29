@@ -3,9 +3,9 @@ A C++ base game engine.
 For learn graphics render.
 
 ## 一期目标:
-加载一个3D模型,并渲染出来. 
+2020/04/29~2020/5/5
 
-2020/04/29
+加载一个3D模型,并渲染出来. 
 
 ## 第三方库
 glm：数学库
@@ -38,3 +38,8 @@ mkdir .build
 cd .build
 
 cmake ..
+
+## 工具
+vs2017
+
+cmake
