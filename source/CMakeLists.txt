@@ -3,6 +3,8 @@ include_directories(${CMAKE_SOURCE_DIR}/external/assimp/include)
 include_directories(${CMAKE_SOURCE_DIR}/external/glad/include)
 include_directories(${CMAKE_SOURCE_DIR}/external/glfw/include)
 include_directories(${CMAKE_SOURCE_DIR}/external/glm)
+include_directories(${CMAKE_SOURCE_DIR}/external)
+include_directories(${CMAKE_SOURCE_DIR}/source/Util/Log)
 
 # api
 set(API_SRCS
@@ -29,15 +31,34 @@ set (OGL_SRCS
 	${CMAKE_SOURCE_DIR}/source/RenderAPI/OGL/OGLVertexBuffer.cpp
 )
 
+# windows platform
+set(WINDOWS_SRCS
+	${CMAKE_SOURCE_DIR}/source/Platform/Windows/WinApplication.h
+	${CMAKE_SOURCE_DIR}/source/Platform/Windows/WinApplication.cpp
+	${CMAKE_SOURCE_DIR}/source/Platform/Windows/WinWindows.h
+	${CMAKE_SOURCE_DIR}/source/Platform/Windows/WinWindows.cpp
+)
+
+# log
+set(LOG_SRCS
+	${CMAKE_SOURCE_DIR}/source/Util/Log/Log.h
+	${CMAKE_SOURCE_DIR}/source/Util/Log/Log.cpp
+)
+
 # group
 source_group(RenderAPI\\API FILES ${API_SRCS})
 source_group(RenderAPI\\OGL FILES ${OGL_SRCS})
+source_group(Platform\\Windows FILES ${WINDOWS_SRCS})
+source_group(Util\\Log FILES ${LOG_SRCS})
 
 add_library(Ardor SHARED
 	${API_SRCS}
 	${OGL_SRCS}
+	${WINDOWS_SRCS}
+	${LOG_SRCS}
 )
 
 # link
 target_link_libraries(Ardor glm_static)
 target_link_libraries(Ardor assimp)
+target_link_libraries(Ardor glfw)
