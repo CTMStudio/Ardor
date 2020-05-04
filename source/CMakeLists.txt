@@ -8,54 +8,64 @@ include_directories(${CMAKE_SOURCE_DIR}/source/Util/Log)
 
 # api
 set(API_SRCS
-	${CMAKE_SOURCE_DIR}/source/RenderAPI/API/IndexBuffer.h
-	${CMAKE_SOURCE_DIR}/source/RenderAPI/API/RenderCommon.h
-	${CMAKE_SOURCE_DIR}/source/RenderAPI/API/RenderContext.h
-	${CMAKE_SOURCE_DIR}/source/RenderAPI/API/Shader.h
-	${CMAKE_SOURCE_DIR}/source/RenderAPI/API/Texture.h
-	${CMAKE_SOURCE_DIR}/source/RenderAPI/API/VertexBuffer.h
+	Graphics/API/IndexBuffer.h
+	Graphics/API/RenderCommon.h
+	Graphics/API/RenderContext.h
+	Graphics/API/Shader.h
+	Graphics/API/Texture.h
+	Graphics/API/VertexBuffer.h
 )
 
 # ogl src
 set (OGL_SRCS
     ${CMAKE_SOURCE_DIR}/external/glad/src/glad.c
-	${CMAKE_SOURCE_DIR}/source/RenderAPI/OGL/OGLIndexBuffer.h
-	${CMAKE_SOURCE_DIR}/source/RenderAPI/OGL/OGLIndexBuffer.cpp
-	${CMAKE_SOURCE_DIR}/source/RenderAPI/OGL/OGLRenderContext.h
-	${CMAKE_SOURCE_DIR}/source/RenderAPI/OGL/OGLRenderContext.cpp
-	${CMAKE_SOURCE_DIR}/source/RenderAPI/OGL/OGLShader.h
-	${CMAKE_SOURCE_DIR}/source/RenderAPI/OGL/OGLShader.cpp
-	${CMAKE_SOURCE_DIR}/source/RenderAPI/OGL/OGLTexture.h
-	${CMAKE_SOURCE_DIR}/source/RenderAPI/OGL/OGLTexture.cpp
-	${CMAKE_SOURCE_DIR}/source/RenderAPI/OGL/OGLVertexBuffer.h
-	${CMAKE_SOURCE_DIR}/source/RenderAPI/OGL/OGLVertexBuffer.cpp
+	Graphics/OGL/OGLIndexBuffer.h
+	Graphics/OGL/OGLIndexBuffer.cpp
+	Graphics/OGL/OGLRenderContext.h
+	Graphics/OGL/OGLRenderContext.cpp
+	Graphics/OGL/OGLShader.h
+	Graphics/OGL/OGLShader.cpp
+	Graphics/OGL/OGLTexture.h
+	Graphics/OGL/OGLTexture.cpp
+	Graphics/OGL/OGLVertexBuffer.h
+	Graphics/OGL/OGLVertexBuffer.cpp
 )
 
 # windows platform
 set(WINDOWS_SRCS
-	${CMAKE_SOURCE_DIR}/source/Platform/Windows/WinApplication.h
-	${CMAKE_SOURCE_DIR}/source/Platform/Windows/WinApplication.cpp
-	${CMAKE_SOURCE_DIR}/source/Platform/Windows/WinWindows.h
-	${CMAKE_SOURCE_DIR}/source/Platform/Windows/WinWindows.cpp
+	Render/RenderWindow.h
+	Render/RenderWindow.cpp
 )
 
 # log
 set(LOG_SRCS
-	${CMAKE_SOURCE_DIR}/source/Util/Log/Log.h
-	${CMAKE_SOURCE_DIR}/source/Util/Log/Log.cpp
+	Util/Log/Log.h
+	Util/Log/Log.cpp
+)
+
+# engie
+set(ENGINE_SRCS
+	Engine.h
+	EngineImp.h
+	EngineImp.cpp
 )
 
 # group
-source_group(RenderAPI\\API FILES ${API_SRCS})
-source_group(RenderAPI\\OGL FILES ${OGL_SRCS})
-source_group(Platform\\Windows FILES ${WINDOWS_SRCS})
+source_group(Graphics\\API FILES ${API_SRCS})
+source_group(Graphics\\OGL FILES ${OGL_SRCS})
+source_group(Render FILES ${WINDOWS_SRCS})
 source_group(Util\\Log FILES ${LOG_SRCS})
+source_group(Engine FILES ${ENGINE_SRCS})
+
+# macros definition
+add_definitions("-DDLL_EXPORTS")
 
 add_library(Ardor SHARED
 	${API_SRCS}
 	${OGL_SRCS}
 	${WINDOWS_SRCS}
 	${LOG_SRCS}
+	${ENGINE_SRCS}
 )
 
 # link

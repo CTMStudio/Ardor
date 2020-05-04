@@ -11,6 +11,8 @@ namespace Ardor
 	public:
 		static Log* Get();
 
+		~Log();
+
 		void Init();
 
 		void SetLevel(spdlog::level::level_enum level);
@@ -27,9 +29,8 @@ namespace Ardor
 	};
 
 
-#define LogDebug(x) Log::Get()->GetLogger()->debug(x)
-#define LogInfo(x) Log::Get()->GetLogger()->info(x)
-#define LogError(x) Log::Get()->GetLogger()->info(x)
-
+#define LogDebug(...) Log::Get()->GetLogger()->debug(__VA_ARGS__)
+#define LogInfo(...) Log::Get()->GetLogger()->info(__VA_ARGS__)
+#define LogError(...) Log::Get()->GetLogger()->error(__VA_ARGS__)
 }
 
